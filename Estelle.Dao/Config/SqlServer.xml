@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+         xmlns:tx="http://www.springframework.net/tx"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:db="http://www.springframework.net/database">
+
+  <description>
+    数据库连接及nhibernate的配置
+  </description>
+  
+  <!-- 用以我们在其它的应用程序中，配置数据访问 -->
+  <object type="Spring.Objects.Factory.Config.PropertyPlaceholderConfigurer, Spring.Core">
+    <property name="ConfigSections" value="databaseSettings"/>
+  </object>
+  <!-- 数据库和Nhibernate的相关配置 $变量在Web.config中定义 -->
+  <db:provider id="DbProvider" provider="SqlServer-2.0" connectionString="Server=${db.datasource};database=${db.database};uid=${db.user};pwd=${db.password};"/>
+
+  <!--SessionFactory对象 -->
+  <object id="NHibernateSessionFactory" type="Spring.Data.NHibernate.LocalSessionFactoryObject, Spring.Data.NHibernate32">
+    <property name="DbProvider" ref="DbProvider"/>
+    <property name="MappingAssemblies">
+      <list>
+        <value>Estelle.Domain</value>
+      </list>
+    </property>    
+    <property name="HibernateProperties">
+      <dictionary>
+        <entry key="hibernate.connection.provider" value="NHibernate.Connection.DriverConnectionProvider"/>
+        <entry key="hibernate.connection.driver_class" value="NHibernate.Driver.SqlClientDriver"/>
+        <entry key="dialect" value="NHibernate.Dialect.MsSql2008Dialect"/>           
+        <entry key="show_sql" value="true"/>
+        <entry key="hibernate.current_session_context_class" value="Spring.Data.NHibernate.SpringSessionContext, Spring.Data.NHibernate32"/>        
+        <!--自动建表(反向映射)-->
+        <!--<entry key="hbm2ddl.auto" value="update"/>
+        <entry key="adonet.batch_size" value="10"/>
+        <entry key="command_timeout" value="60"/>-->
+        <!--显式启用二级缓存-->
+        <!--<entry key="cache.provider_class" value="NHibernate.Cache.HashtableCacheProvider"/>-->
+        <!--<entry key="cache.use_second_level_cache" value="true"/>-->
+        <!--启动查询缓存-->
+        <!--<entry key="cache.use_query_cache" value="false"/>-->
+        <entry key="query.substitutions" value="true 1, false 0, yes 'Y', no 'N"/>        
+      </dictionary>
+    </property>
+    <property name="ExposeTransactionAwareSessionFactory" value="true" />    
+  </object>
+  
+</objects>

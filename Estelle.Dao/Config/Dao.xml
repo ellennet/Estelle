@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <description>
+    数据访问层的配置以及DAO模板的注入配置
+  </description>
+  
+  <!--事务管理-->
+  <object id="transactionManager" type="Spring.Data.NHibernate.HibernateTransactionManager, Spring.Data.NHibernate32">
+    <property name="DbProvider" ref="DbProvider"/>
+    <property name="SessionFactory" ref="NHibernateSessionFactory"/>    
+  </object>
+  <object type="Spring.Dao.Attributes.PersistenceExceptionTranslationPostProcessor, Spring.Data"/>
+
+  <!--Hibernate模板-->
+  <object id="HibernateTemplate" type="Spring.Data.NHibernate.Generic.HibernateTemplate">
+    <property name="SessionFactory" ref="NHibernateSessionFactory" />
+    <property name="TemplateFlushMode" value="Auto" />
+    <property name="CacheQueries" value="true" />    
+  </object>
+
+  <!--Ado模板-->
+  <object id="AdoTemplate" type="Spring.Data.Core.AdoTemplate, Spring.Data">
+    <property name="DbProvider" ref="DbProvider"/>
+    <property name="DataReaderWrapperType" value="Spring.Data.Support.NullMappingDataReader, Spring.Data"/>
+  </object>      
+
+    
+  <!--Dao注入模板-->
+  <object id="VehicleBrandDao" type="Estelle.Dao.VehicleBrandDao, Estelle.Dao">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>    
+  </object>
+
+  <object id="VehicleTypeDao" type="Estelle.Dao.VehicleTypeDao, Estelle.Dao">
+    <property name="HibernateTemplate" ref="HibernateTemplate"/>    
+  </object>  
+  <!--注入结束-->
+  
+</objects>

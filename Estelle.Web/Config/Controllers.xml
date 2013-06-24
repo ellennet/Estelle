@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  
+  <!--Controllers注入Service-->  
+  <object type="Estelle.Web.Controllers.HomeController, Estelle.Web" singleton="false" >
+    <property name="VehicleService" ref="VehicleService" />
+  </object>
+</objects>

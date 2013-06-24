@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Estelle.Domain" namespace="Estelle.Domain.Vehicles">
+  <class name="VehicleType" table="VehicleType" lazy="false">
+
+    <id name="TypeID" column="TypeID">
+      <column name="TypeID" sql-type="uniqueidentifier"/>
+      <generator class="guid" />
+    </id>
+
+    <property name="BrandID" type="Guid">
+      <column name="BrandID" sql-type="uniqueidentifier"/>
+    </property>    
+
+    <property name="Type" type="string">
+      <column name="Type" length="50" sql-type="varchar"/>
+    </property>
+
+    <property name="EngineDisplacement" type="string">
+      <column name="EngineDisplacement" length="5" sql-type="varchar"/>
+    </property>
+
+    <property name="Turbo" type="bool">
+      <column name="Turbo" sql-type="bit"/>
+    </property>
+
+    <many-to-one name="CurrentVehicleBrand" column="BrandID" class="Estelle.Domain.Vehicles.VehicleBrand, Estelle.Domain" />
+
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Estelle.Domain" namespace="Estelle.Domain.Vehicles">
+  <class name="VehicleBrand" table="VehicleBrand" lazy="false">
+
+    <id name="BrandID" column="BrandID">
+      <column name="BrandID" sql-type="uniqueidentifier"/>
+      <generator class="guid" />
+    </id>
+
+    <property name="BrandName" type="string">
+      <column name="BrandName" length="50" sql-type="varchar"/>
+    </property>
+
+    <property name="Nationality" type="string">
+      <column name="Nationality" length="50" sql-type="varchar"/>
+    </property>
+
+    <property name="DateCreated" type="datetime">
+      <column name="DateCreated" sql-type="smalldatetime"/>
+    </property>
+
+    <bag name="VehicleTypeList" table="VehicleType">
+      <key column="BrandID"/>
+      <one-to-many class="Estelle.Domain.Vehicles.VehicleBrand, Estelle.Domain" />
+    </bag>
+
+  </class>
+</hibernate-mapping>

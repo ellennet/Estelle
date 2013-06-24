@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <description>
+    Service层中服务注入到WCF中
+  </description>  
+  <object id="WcfVehicleService" type="Estelle.WCF.WebHost.WcfVehicleService, Estelle.WCF.WebHost">
+    <property name="VehicleService" ref="VehicleService" />
+  </object>
+</objects>
