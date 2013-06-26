@@ -15,6 +15,11 @@
     .liveExample { height:20em; overflow:auto }
 </style>
 
+<button id="BtnListAll">列出所有</button>
+<button id="BtnListQ">列出德国且排量大于等于1.8</button>
+
+<hr />
+
 <div data-bind='simpleGrid: VehicleList'></div>
 <button data-bind='click: sortByBrand'>
     按品牌排序
@@ -43,9 +48,22 @@
         });
     };
 
-    $(function () {
-        $.getJSON('@Url.Action("ListAllVehicle", "Home")', {}, function (json, textStatus) {         
+    function ListVehicle(type)
+    {
+        $.getJSON('@Url.Action("ListAllVehicle", "Home")', { type: type }, function (json, textStatus) {            
             ko.applyBindings(new PagedGridModel(json));
+        });
+    }
+
+    $(function () {
+
+        $.ajaxSetup({ cache: false });
+
+        $("#BtnListAll").click(function () {
+            ListVehicle(1);
+        });
+        $("#BtnListQ").click(function () {
+            ListVehicle(2);
         });
     });
 

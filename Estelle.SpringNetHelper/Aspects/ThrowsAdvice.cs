@@ -21,7 +21,7 @@ namespace Estelle.SpringNetHelper
 
         public void AfterThrowing(Exception ex)
         {
-            logger.Warn(String.Format("异常的内容为: {0}", ex));
+            logger.Warn(String.Format("异常的内容为: {0}", ex));            
         }
     }
 }

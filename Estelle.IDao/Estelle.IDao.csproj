@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Estelle.Common\Estelle.Common.csproj">
+      <Project>{3195b97f-4d26-4ab2-86de-66c90752d920}</Project>
+      <Name>Estelle.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Estelle.Domain\Estelle.Domain.csproj">
       <Project>{e1de00f3-880f-4648-a02b-574924a3f009}</Project>
       <Name>Estelle.Domain</Name>

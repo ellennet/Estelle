@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=2.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging, Version=1.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Common.Logging.1.2.0\lib\1.0\Common.Logging.dll</HintPath>
@@ -70,6 +74,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Estelle.Common\Estelle.Common.csproj">
+      <Project>{3195b97f-4d26-4ab2-86de-66c90752d920}</Project>
+      <Name>Estelle.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Estelle.Dao\Estelle.Dao.csproj">
       <Project>{0541863d-db73-4f55-87a8-a217f7d2677e}</Project>
       <Name>Estelle.Dao</Name>

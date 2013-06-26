@@ -29,11 +29,16 @@ namespace Estelle.Models
         /// 排量
         /// <summary>
         /// </summary>
-        public string EngineDisplacement { get; set; }
+        public double EngineDisplacement { get; set; }
 
         /// <summary>
         /// 是否增压
         /// </summary>
         public bool Turbo { get; set; }
+
+        /// <summary>
+        /// 版本号
+        /// </summary>
+        public int Version { get; set; }
     }
 }

@@ -13,7 +13,16 @@ namespace Estelle.Web.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "所有型号信息";            
+            ViewBag.Message = "所有型号信息";
+            
+            Estelle.Models.VehicleBrand VehicleBrandModel = AopVehicleService.GetVehicleBrandByID(new Guid("3202e290-5440-4bf4-a0f5-7b59938de519"));
+
+
+            VehicleBrandModel.BrandName="12321";
+
+
+            AopVehicleService.UpdateVehicleBrand(VehicleBrandModel);
+
 
             return View();
         }
@@ -32,21 +41,22 @@ namespace Estelle.Web.Controllers
             return View();
         }
 
-        public ActionResult VehicleInfo()
-        {
-            ViewBag.Message = "品牌及型号信息";
-
-
-
-            return View("VehicleInfo");
-        }
-
-
         [HttpGet]
-        public ActionResult ListAllVehicle()
+        public ActionResult ListAllVehicle(string type)
         {
-            List<Estelle.Models.VehicleInfo> VehicleInfoList = VehicleService.ListAllVehicle();
+            List<Estelle.Models.VehicleInfo> VehicleInfoList = new List<Estelle.Models.VehicleInfo>();
 
+            if (type == "1")
+            {
+                VehicleInfoList = AopVehicleService.ListAllInfo();
+            }
+            if (type == "2")
+            {
+                VehicleInfoList = AopVehicleService.ListAllTypeWithGermanyGT18();
+            }
+
+            
+            
             return Json(VehicleInfoList, JsonRequestBehavior.AllowGet);            
         }
 

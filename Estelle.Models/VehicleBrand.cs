@@ -30,5 +30,10 @@ namespace Estelle.Models
         /// 创建日期
         /// </summary>
         public DateTime DateCreated { get; set; }
+
+        /// <summary>
+        /// 版本号
+        /// </summary>
+        public virtual int Version { get; set; }
     }
 }

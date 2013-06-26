@@ -17,7 +17,7 @@ namespace Estelle.Service
         /// </summary>
         /// <param name="VehicleBrandModel">品牌信息数据</param>
         /// <returns></returns>
-        [LoggingAttributes]
+        [LoggingAttributes]        
         public object AddVehicleBrand(Models.VehicleBrand VehicleBrandModel)
         {
             Domain.Vehicles.VehicleBrand VehicleBrand = new Domain.Vehicles.VehicleBrand();
@@ -25,9 +25,34 @@ namespace Estelle.Service
             VehicleBrand.BrandName = VehicleBrandModel.BrandName;
             VehicleBrand.Nationality = VehicleBrandModel.Nationality;
             VehicleBrand.DateCreated = VehicleBrandModel.DateCreated;
-            VehicleBrand.BrandID = VehicleBrandModel.BrandID;
 
             return VehicleBrandDao.Save(VehicleBrand);
+        }
+
+        /// <summary>
+        /// 根据ID得到品牌数据
+        /// </summary>
+        /// <param name="BrandID">品牌ID</param>
+        /// <returns></returns>
+        [LoggingAttributes]
+        public Models.VehicleBrand GetVehicleBrandByID(Guid BrandID)
+        {            
+            Domain.Vehicles.VehicleBrand VehicleBrand = VehicleBrandDao.Load(BrandID);            
+            AutoMapper.Mapper.CreateMap<Domain.Vehicles.VehicleBrand, Models.VehicleBrand>();
+            Models.VehicleBrand VehicleBrandModel = AutoMapper.Mapper.Map<Domain.Vehicles.VehicleBrand, Models.VehicleBrand>(VehicleBrand);
+            return VehicleBrandModel;
+        }
+
+        /// <summary>
+        /// 更新品牌信息
+        /// </summary>
+        /// <param name="VehicleBrandModel">品牌信息数据</param>
+        [LoggingAttributes]
+        public void UpdateVehicleBrand(Models.VehicleBrand VehicleBrandModel)
+        {
+            AutoMapper.Mapper.CreateMap<Models.VehicleBrand, Domain.Vehicles.VehicleBrand>();
+            Domain.Vehicles.VehicleBrand VehicleBrand = AutoMapper.Mapper.Map<Models.VehicleBrand, Domain.Vehicles.VehicleBrand>(VehicleBrandModel);
+            VehicleBrandDao.Update(VehicleBrand);
         }
 
         /// <summary>
@@ -45,7 +70,6 @@ namespace Estelle.Service
             {
                 Domain.Vehicles.VehicleType VehicleType = new Domain.Vehicles.VehicleType();
 
-                VehicleType.TypeID = VehicleTypeModel.TypeID;
                 VehicleType.BrandID = VehicleBrandID;
                 VehicleType.Type = VehicleTypeModel.Type;
                 VehicleType.EngineDisplacement = VehicleTypeModel.EngineDisplacement;
@@ -60,19 +84,60 @@ namespace Estelle.Service
         }
 
         /// <summary>
+        /// 列出所有品牌
+        /// </summary>
+        /// <returns></returns>
+        [LoggingAttributes]
+        public List<Models.VehicleBrand> ListAllBrand()
+        {
+            List<Domain.Vehicles.VehicleBrand> VehicleBrandDomainList = VehicleBrandDao.LoadAll().ToList();
+            Common.SimpleObjectMapper<Domain.Vehicles.VehicleBrand, Models.VehicleBrand> SimpleObjectMapper = new Common.SimpleObjectMapper<Domain.Vehicles.VehicleBrand, Models.VehicleBrand>();
+            List<Models.VehicleBrand> VehicleBrandList=SimpleObjectMapper.ListMap(VehicleBrandDomainList);
+
+            return VehicleBrandList;
+        }
+
+        /// <summary>
         /// 列出所有型号
         /// </summary>
         /// <returns>集合</returns>
         [LoggingAttributes]
-        public List<Models.VehicleInfo> ListAllVehicle()
-        {
-            List<Models.VehicleInfo> VehicleList = new List<Models.VehicleInfo>();            
+        public List<Models.VehicleInfo> ListAllInfo()
+        {                 
             List<Domain.Vehicles.VehicleType> VehicleTypeList = VehicleTypeDao.LoadAll().ToList();
+            List<Models.VehicleInfo> VehicleList = new List<Models.VehicleInfo>();
 
             VehicleTypeList.ForEach(list =>
             {
                 Models.VehicleInfo VehicleInfo = new Models.VehicleInfo();
-                                
+
+                VehicleInfo.BrandName = list.CurrentVehicleBrand.BrandName;
+                VehicleInfo.Nationality = list.CurrentVehicleBrand.Nationality;
+
+                VehicleInfo.Type = list.Type;
+                VehicleInfo.EngineDisplacement = list.EngineDisplacement;
+                VehicleInfo.Turbo = list.Turbo;
+
+                VehicleList.Add(VehicleInfo);
+            });
+
+            return VehicleList;
+        }
+
+        /// <summary>
+        /// 列出所有德国品牌且排量大于等于1.8的型号
+        /// </summary>
+        /// <returns></returns>
+        [LoggingAttributes]
+        public List<Models.VehicleInfo> ListAllTypeWithGermanyGT18()
+        {
+            List<Domain.Vehicles.VehicleType> VehicleTypeList = VehicleTypeDao.ListAllTypeWithGermanyGT18().ToList();
+            List<Models.VehicleInfo> VehicleList = new List<Models.VehicleInfo>();
+
+            VehicleTypeList.ForEach(list =>
+            {
+                Models.VehicleInfo VehicleInfo = new Models.VehicleInfo();
+
                 VehicleInfo.BrandName = list.CurrentVehicleBrand.BrandName;
                 VehicleInfo.Nationality = list.CurrentVehicleBrand.Nationality;
 

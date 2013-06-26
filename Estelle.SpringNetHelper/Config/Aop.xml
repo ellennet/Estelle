@@ -38,17 +38,4 @@
   <!--异常通知拦截 自动支持-->
   <object id="throwsAdvice"  type="Estelle.SpringNetHelper.ThrowsAdvice, Estelle.SpringNetHelper" />
 
-  <!--配置AOP-->
-  <object id="AopVehicleService" type="Spring.Aop.Framework.ProxyFactoryObject">
-    <property name="Target" ref="VehicleService">
-    </property>    
-    <property name="InterceptorNames">
-      <list>
-        <value>aroundAdvisor</value>
-        <value>afterAdvisor</value>
-        <value>throwsAdvice</value>
-      </list>
-    </property>
-  </object>
-
 </objects>

@@ -7,11 +7,11 @@ namespace Estelle.WCF.WebHost
 {
     public class WcfVehicleService : Contracts.IWcfVehicleService
     {
-        public IService.IVehicleService VehicleService { get; set; }        
+        public IService.IVehicleService VehicleService { get; set; }
 
-        public List<Estelle.Models.VehicleInfo> ListAllVehicle()
+        public List<Estelle.Models.VehicleInfo> ListAllInfo()
         {
-            return VehicleService.ListAllVehicle();
+            return VehicleService.ListAllInfo();
         }
     }
 }

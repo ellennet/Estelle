@@ -13,6 +13,19 @@
     <property name="VehicleBrandDao" ref="VehicleBrandDao" />
     <property name="VehicleTypeDao" ref="VehicleTypeDao" />
   </object>
+
+  <!--服务层配置AOP-->
+  <object id="AopVehicleService" type="Spring.Aop.Framework.ProxyFactoryObject">
+    <property name="Target" ref="VehicleService">
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>aroundAdvisor</value>
+        <value>afterAdvisor</value>
+        <value>throwsAdvice</value>
+      </list>
+    </property>
+  </object>  
    
 </objects>
 

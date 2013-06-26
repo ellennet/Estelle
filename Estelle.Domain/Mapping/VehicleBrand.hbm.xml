@@ -6,6 +6,8 @@
       <column name="BrandID" sql-type="uniqueidentifier"/>
       <generator class="guid" />
     </id>
+    
+    <version name="Version" column="Version" type="integer" unsaved-value="0"/>
 
     <property name="BrandName" type="string">
       <column name="BrandName" length="50" sql-type="varchar"/>
@@ -17,12 +19,12 @@
 
     <property name="DateCreated" type="datetime">
       <column name="DateCreated" sql-type="smalldatetime"/>
-    </property>
+    </property> 
 
-    <bag name="VehicleTypeList" table="VehicleType">
+    <!--<bag name="VehicleTypeList" table="VehicleType">
       <key column="BrandID"/>
       <one-to-many class="Estelle.Domain.Vehicles.VehicleBrand, Estelle.Domain" />
-    </bag>
+    </bag>-->
 
   </class>
 </hibernate-mapping>

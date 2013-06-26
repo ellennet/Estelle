@@ -353,10 +353,6 @@
       <Project>{0541863d-db73-4f55-87a8-a217f7d2677e}</Project>
       <Name>Estelle.Dao</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Estelle.Domain\Estelle.Domain.csproj">
-      <Project>{e1de00f3-880f-4648-a02b-574924a3f009}</Project>
-      <Name>Estelle.Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Estelle.IDao\Estelle.IDao.csproj">
       <Project>{c7af9feb-b1f6-4f53-b9fd-7dc270dfd49f}</Project>
       <Name>Estelle.IDao</Name>

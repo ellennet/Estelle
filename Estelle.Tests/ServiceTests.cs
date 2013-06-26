@@ -18,7 +18,7 @@ namespace Estelle.Tests
         [Test]
         public void ServeceDataTest()
         {
-            Assert.Greater(VehicleService.ListAllVehicle().Count, 0);            
+            Assert.Greater(VehicleService.ListAllInfo().Count, 0);            
         }
     }
 }

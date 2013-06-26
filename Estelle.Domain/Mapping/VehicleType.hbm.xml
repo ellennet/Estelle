@@ -7,6 +7,8 @@
       <generator class="guid" />
     </id>
 
+    <version name="Version" column="Version" type="integer" unsaved-value="0"/>
+
     <property name="BrandID" type="Guid">
       <column name="BrandID" sql-type="uniqueidentifier"/>
     </property>    
@@ -15,14 +17,14 @@
       <column name="Type" length="50" sql-type="varchar"/>
     </property>
 
-    <property name="EngineDisplacement" type="string">
-      <column name="EngineDisplacement" length="5" sql-type="varchar"/>
+    <property name="EngineDisplacement" type="double">
+      <column name="EngineDisplacement" length="5" sql-type="float"/>
     </property>
 
     <property name="Turbo" type="bool">
       <column name="Turbo" sql-type="bit"/>
     </property>
-
+    
     <many-to-one name="CurrentVehicleBrand" column="BrandID" class="Estelle.Domain.Vehicles.VehicleBrand, Estelle.Domain" />
 
   </class>

@@ -13,6 +13,11 @@ namespace Estelle.Domain.Vehicles
         public virtual Guid TypeID { get; set; }
 
         /// <summary>
+        /// 版本号
+        /// </summary>
+        public virtual int Version { get; set; }
+
+        /// <summary>
         /// 品牌ID
         /// </summary>
         public virtual Guid BrandID { get; set; }
@@ -25,7 +30,7 @@ namespace Estelle.Domain.Vehicles
         /// 排量
         /// <summary>
         /// </summary>
-        public virtual string EngineDisplacement { get; set; }
+        public virtual double EngineDisplacement { get; set; }
 
         /// <summary>
         /// 是否增压
@@ -36,6 +41,5 @@ namespace Estelle.Domain.Vehicles
         /// 品牌信息
         /// </summary>
         public virtual VehicleBrand CurrentVehicleBrand { get; set; }
-
     }
 }

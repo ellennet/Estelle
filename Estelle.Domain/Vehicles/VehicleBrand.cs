@@ -13,6 +13,11 @@ namespace Estelle.Domain.Vehicles
         public virtual Guid BrandID { get; set; }
 
         /// <summary>
+        /// 版本号
+        /// </summary>
+        public virtual int Version { get; set; }
+
+        /// <summary>
         /// 品牌名称
         /// </summary>
         public virtual string BrandName { get; set; }
@@ -30,6 +35,6 @@ namespace Estelle.Domain.Vehicles
         /// <summary>
         /// 下属型号
         /// </summary>
-        public virtual IList<VehicleType> VehicleTypeList { get; set; }
+        //public virtual IList<VehicleType> VehicleTypeList { get; set; }
     }
 }

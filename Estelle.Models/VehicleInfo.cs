@@ -29,7 +29,7 @@ namespace Estelle.Models
         /// <summary>
         /// 排量
         /// </summary>
-        public string EngineDisplacement { get; set; }
+        public double EngineDisplacement { get; set; }
 
         /// <summary>
         /// 是否增压
