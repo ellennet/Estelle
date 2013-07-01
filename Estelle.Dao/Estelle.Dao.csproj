@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dao\Repository\Repository.cs" />
+    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Dao\VehicleBrandDao.cs" />
     <Compile Include="Dao\VehicleTypeDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,7 +86,7 @@
     <EmbeddedResource Include="Config\Dao.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Config\SqlServer.xml">
+    <EmbeddedResource Include="Config\DBServer.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

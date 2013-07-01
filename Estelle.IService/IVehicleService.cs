@@ -6,7 +6,10 @@ using System.Text;
 namespace Estelle.IService
 {
     public interface IVehicleService
-    {        
+    {
+
+        void test();
+
         /// <summary>
         /// 新增一个品牌
         /// </summary>

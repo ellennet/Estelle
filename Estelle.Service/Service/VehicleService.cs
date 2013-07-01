@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Estelle.SpringNetHelper;
+using Spring.Transaction.Interceptor;
 
 namespace Estelle.Service
 {
@@ -11,6 +12,26 @@ namespace Estelle.Service
         //被注入的Dao
         public IDao.IVehicleBrandDao VehicleBrandDao { get; set; } 
         public IDao.IVehicleTypeDao VehicleTypeDao { get; set; }
+
+        //被注入的Service
+        public IService.ICommonService CommonService { get; set; }
+
+        [Transaction]
+        public void test()
+        {
+            Domain.Vehicles.VehicleBrand VehicleBrand = new Domain.Vehicles.VehicleBrand();
+            VehicleBrand.BrandName = "abc";
+            VehicleBrand.Nationality = "nn";
+            VehicleBrand.DateCreated = DateTime.Now;
+            VehicleBrandDao.Save(VehicleBrand);
+
+            Domain.Vehicles.VehicleType VehicleType = new Domain.Vehicles.VehicleType();
+            VehicleType.BrandID = VehicleBrand.BrandID;
+            VehicleType.EngineDisplacement = 1;
+            VehicleType.Turbo = false;
+            VehicleType.Type = "abc";            
+            VehicleTypeDao.Save(VehicleType);        
+        }
 
         /// <summary>
         /// 新增一个品牌
@@ -25,8 +46,18 @@ namespace Estelle.Service
             VehicleBrand.BrandName = VehicleBrandModel.BrandName;
             VehicleBrand.Nationality = VehicleBrandModel.Nationality;
             VehicleBrand.DateCreated = VehicleBrandModel.DateCreated;
-
+            
             return VehicleBrandDao.Save(VehicleBrand);
+        }
+
+        /// <summary>
+        /// 根据ID删除品牌信息
+        /// </summary>
+        /// <param name="guid"></param>
+        [LoggingAttributes]
+        public void DelVehicleBrand(object guid)
+        {
+            VehicleBrandDao.Delete(guid);
         }
 
         /// <summary>
@@ -37,9 +68,9 @@ namespace Estelle.Service
         [LoggingAttributes]
         public Models.VehicleBrand GetVehicleBrandByID(Guid BrandID)
         {            
-            Domain.Vehicles.VehicleBrand VehicleBrand = VehicleBrandDao.Load(BrandID);            
-            AutoMapper.Mapper.CreateMap<Domain.Vehicles.VehicleBrand, Models.VehicleBrand>();
-            Models.VehicleBrand VehicleBrandModel = AutoMapper.Mapper.Map<Domain.Vehicles.VehicleBrand, Models.VehicleBrand>(VehicleBrand);
+            Domain.Vehicles.VehicleBrand VehicleBrand = VehicleBrandDao.Load(BrandID);
+            Common.SimpleObjectMapper<Domain.Vehicles.VehicleBrand, Models.VehicleBrand> SimpleObjectMapper = new Common.SimpleObjectMapper<Domain.Vehicles.VehicleBrand, Models.VehicleBrand>();
+            Models.VehicleBrand VehicleBrandModel = SimpleObjectMapper.ObjectMap(VehicleBrand);
             return VehicleBrandModel;
         }
 
@@ -49,9 +80,9 @@ namespace Estelle.Service
         /// <param name="VehicleBrandModel">品牌信息数据</param>
         [LoggingAttributes]
         public void UpdateVehicleBrand(Models.VehicleBrand VehicleBrandModel)
-        {
-            AutoMapper.Mapper.CreateMap<Models.VehicleBrand, Domain.Vehicles.VehicleBrand>();
-            Domain.Vehicles.VehicleBrand VehicleBrand = AutoMapper.Mapper.Map<Models.VehicleBrand, Domain.Vehicles.VehicleBrand>(VehicleBrandModel);
+        {            
+            Common.SimpleObjectMapper<Models.VehicleBrand, Domain.Vehicles.VehicleBrand> SimpleObjectMapper = new Common.SimpleObjectMapper<Models.VehicleBrand, Domain.Vehicles.VehicleBrand>();
+            Domain.Vehicles.VehicleBrand VehicleBrand = SimpleObjectMapper.ObjectMap(VehicleBrandModel);            
             VehicleBrandDao.Update(VehicleBrand);
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NHibernate;
 using Spring.Stereotype;
 using Spring.Transaction.Interceptor;
 
@@ -17,7 +18,10 @@ namespace Estelle.Dao
         /// <returns></returns>
         [Transaction(ReadOnly = true)]
         public Guid GetVehicleBrandID(string BrandName)
-        {            
+        {
+            //IList<Domain.Vehicles.VehicleType> abc = base.Session.QueryOver<Domain.Vehicles.VehicleType>()
+            //    .JoinQueryOver<Domain.Vehicles.VehicleBrand>(c => c.CurrentVehicleBrand).List();
+
             IList<Domain.Vehicles.VehicleBrand> VehicleBrandList = base.Session.QueryOver<Domain.Vehicles.VehicleBrand>().Where(w => w.BrandName == BrandName).List().ToList();            
             Guid ret = (VehicleBrandList.Count == 1) ? VehicleBrandList[0].BrandID : Guid.Empty;
             return ret;            

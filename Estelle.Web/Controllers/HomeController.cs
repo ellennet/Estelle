@@ -14,14 +14,8 @@ namespace Estelle.Web.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "所有型号信息";
-            
-            Estelle.Models.VehicleBrand VehicleBrandModel = AopVehicleService.GetVehicleBrandByID(new Guid("3202e290-5440-4bf4-a0f5-7b59938de519"));
 
-
-            VehicleBrandModel.BrandName="12321";
-
-
-            AopVehicleService.UpdateVehicleBrand(VehicleBrandModel);
+            VehicleService.test();
 
 
             return View();
@@ -54,9 +48,7 @@ namespace Estelle.Web.Controllers
             {
                 VehicleInfoList = AopVehicleService.ListAllTypeWithGermanyGT18();
             }
-
-            
-            
+                        
             return Json(VehicleInfoList, JsonRequestBehavior.AllowGet);            
         }
 

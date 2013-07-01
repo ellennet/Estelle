@@ -8,13 +8,16 @@
     服务层的注入配置
   </description>
 
-  <!--给Service注入Dao-->  
+  <!--CommonService配置开始-->
+  <object id="CommonService" type="Estelle.Service.CommonService, Estelle.Service" />
+  <!--CommonService配置结束-->
+    
+  <!--VehicleService配置开始-->
   <object id="VehicleService" type="Estelle.Service.VehicleService, Estelle.Service">
     <property name="VehicleBrandDao" ref="VehicleBrandDao" />
     <property name="VehicleTypeDao" ref="VehicleTypeDao" />
+    <property name="CommonService" ref="CommonService" />
   </object>
-
-  <!--服务层配置AOP-->
   <object id="AopVehicleService" type="Spring.Aop.Framework.ProxyFactoryObject">
     <property name="Target" ref="VehicleService">
     </property>
@@ -25,8 +28,8 @@
         <value>throwsAdvice</value>
       </list>
     </property>
-  </object>  
-   
+  </object>
+  <!--VehicleService配置结束-->
 </objects>
 
 

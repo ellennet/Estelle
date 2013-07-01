@@ -26,8 +26,8 @@
     <property name="HibernateProperties">
       <dictionary>
         <entry key="hibernate.connection.provider" value="NHibernate.Connection.DriverConnectionProvider"/>
-        <entry key="hibernate.connection.driver_class" value="NHibernate.Driver.SqlClientDriver"/>
-        <entry key="dialect" value="NHibernate.Dialect.MsSql2008Dialect"/>           
+        <entry key="hibernate.connection.driver_class" value="${db.driver_class}"/>
+        <entry key="dialect" value="${db.dialect}"/>           
         <entry key="show_sql" value="true"/>
         <entry key="hibernate.current_session_context_class" value="Spring.Data.NHibernate.SpringSessionContext, Spring.Data.NHibernate32"/>        
         <!--自动建表(反向映射)-->

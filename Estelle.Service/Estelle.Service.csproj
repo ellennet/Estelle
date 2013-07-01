@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="GetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CommonService.cs" />
     <Compile Include="Service\VehicleService.cs" />
   </ItemGroup>
   <ItemGroup>

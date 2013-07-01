@@ -1,16 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<objects xmlns="http://www.springframework.net">
+<objects xmlns="http://www.springframework.net"
+         xmlns:db="http://www.springframework.net/database"
+         xmlns:tx="http://www.springframework.net/tx">
   <description>
     数据访问层的配置以及DAO模板的注入配置
   </description>
   
-  <!--事务管理-->
+  <!-- 事务管理策略，本地数据库事务 -->
   <object id="transactionManager" type="Spring.Data.NHibernate.HibernateTransactionManager, Spring.Data.NHibernate32">
     <property name="DbProvider" ref="DbProvider"/>
-    <property name="SessionFactory" ref="NHibernateSessionFactory"/>    
+    <property name="SessionFactory" ref="NHibernateSessionFactory"/>
+  </object>  
+  
+  <object id="transactionInterceptor" type="Spring.Transaction.Interceptor.TransactionInterceptor, Spring.Data">
+    <property name="TransactionManager" ref="transactionManager"/>
+    <property name="TransactionAttributeSource">
+      <object type="Spring.Transaction.Interceptor.AttributesTransactionAttributeSource, Spring.Data"/>
+    </property>
   </object>
-  <object type="Spring.Dao.Attributes.PersistenceExceptionTranslationPostProcessor, Spring.Data"/>
+  
+  <!--支持事务的特性-->
+  <tx:attribute-driven transaction-manager="transactionManager"/>
 
+  <!-- 持久化异常转换处理 -->
+  <object type="Spring.Dao.Attributes.PersistenceExceptionTranslationPostProcessor, Spring.Data"/>  
+  
+    
   <!--Hibernate模板-->
   <object id="HibernateTemplate" type="Spring.Data.NHibernate.Generic.HibernateTemplate">
     <property name="SessionFactory" ref="NHibernateSessionFactory" />
@@ -19,11 +34,10 @@
   </object>
 
   <!--Ado模板-->
-  <object id="AdoTemplate" type="Spring.Data.Core.AdoTemplate, Spring.Data">
+  <!--<object id="AdoTemplate" type="Spring.Data.Core.AdoTemplate, Spring.Data">
     <property name="DbProvider" ref="DbProvider"/>
     <property name="DataReaderWrapperType" value="Spring.Data.Support.NullMappingDataReader, Spring.Data"/>
-  </object>      
-
+  </object>-->      
     
   <!--Dao注入模板-->
   <object id="VehicleBrandDao" type="Estelle.Dao.VehicleBrandDao, Estelle.Dao">
