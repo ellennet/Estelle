@@ -58,6 +58,7 @@
     <Compile Include="Aspects\ThrowsAdvice.cs" />
     <Compile Include="Attributes\LoggingAttributes.cs" />
     <Compile Include="GetAppContext.cs" />
+    <Compile Include="GetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

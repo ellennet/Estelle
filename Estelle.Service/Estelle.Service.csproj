@@ -64,7 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\CommonService.cs" />
     <Compile Include="Service\VehicleService.cs" />
@@ -78,10 +77,6 @@
     <ProjectReference Include="..\Estelle.Common\Estelle.Common.csproj">
       <Project>{3195b97f-4d26-4ab2-86de-66c90752d920}</Project>
       <Name>Estelle.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Estelle.Dao\Estelle.Dao.csproj">
-      <Project>{0541863d-db73-4f55-87a8-a217f7d2677e}</Project>
-      <Name>Estelle.Dao</Name>
     </ProjectReference>
     <ProjectReference Include="..\Estelle.Domain\Estelle.Domain.csproj">
       <Project>{e1de00f3-880f-4648-a02b-574924a3f009}</Project>

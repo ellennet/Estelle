@@ -9,7 +9,7 @@ namespace Estelle.Web.Controllers
     public class HomeController : Controller
     {
         public IService.IVehicleService VehicleService { get; set; }
-        public IService.IVehicleService AopVehicleService = Service.GetService.GetAopService<IService.IVehicleService>("AopVehicleService");
+        public IService.IVehicleService AopVehicleService = SpringNetHelper.GetService.GetAopService<IService.IVehicleService>("AopVehicleService");
 
         public ActionResult Index()
         {
