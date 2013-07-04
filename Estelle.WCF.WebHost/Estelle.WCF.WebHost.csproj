@@ -117,6 +117,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Estelle.Common\Estelle.Common.csproj">
+      <Project>{3195b97f-4d26-4ab2-86de-66c90752d920}</Project>
+      <Name>Estelle.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Estelle.Dao\Estelle.Dao.csproj">
+      <Project>{0541863d-db73-4f55-87a8-a217f7d2677e}</Project>
+      <Name>Estelle.Dao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Estelle.Domain\Estelle.Domain.csproj">
       <Project>{e1de00f3-880f-4648-a02b-574924a3f009}</Project>
       <Name>Estelle.Domain</Name>
@@ -132,6 +140,10 @@
     <ProjectReference Include="..\Estelle.Models\Estelle.Models.csproj">
       <Project>{ba868b0a-3dc2-47d0-a375-2aed11b5faf7}</Project>
       <Name>Estelle.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Estelle.Service\Estelle.Service.csproj">
+      <Project>{0ff416b2-437a-4517-bb21-bcfaea7c318c}</Project>
+      <Name>Estelle.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\Estelle.SpringNetHelper\Estelle.SpringNetHelper.csproj">
       <Project>{247f17da-9814-40f1-8d33-46b51fa7cc54}</Project>

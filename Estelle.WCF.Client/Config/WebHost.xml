@@ -3,7 +3,7 @@
          xmlns:wcf="http://www.springframework.net/wcf">
 
   <wcf:channelFactory id="WebHostVehicle" 
-                      channelType="Mvc4SpringNetDemo.WCF.Contracts.IWcfVehicleService, Mvc4SpringNetDemo.WCF.Contracts"
+                      channelType="Estelle.WCF.Contracts.IWcfVehicleService, Estelle.WCF.Contracts"
                       endpointConfigurationName="WebHostVehicleEndpoint">
   </wcf:channelFactory>
 

@@ -10,7 +10,7 @@ namespace Estelle.WCF.Contracts
     [ServiceContract]
     public interface IWcfVehicleService
     {
-        [OperationContract]
+        [OperationContract]        
         List<Estelle.Models.VehicleInfo> ListAllInfo();
     }
 }

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using Spring.Context;
 using Spring.Context.Support;
+using Estelle.WCF.Contracts;
+using Estelle.Models;
 
-namespace Mvc4SpringNetDemo.WCF.Client
+namespace Estelle.WCF.Client
 {
     class Program
     {
@@ -14,24 +16,23 @@ namespace Mvc4SpringNetDemo.WCF.Client
             try
             {
                 Pause();
-
                 IApplicationContext ctx = ContextRegistry.GetContext();
-                foreach (Contracts.IWcfVehicleService WcfVehicleService in ctx.GetObjectsOfType(typeof(Contracts.IWcfVehicleService)).Values)
+                foreach (IWcfVehicleService WcfVehicleService in ctx.GetObjectsOfType(typeof(IWcfVehicleService)).Values)
                 {
                     try
                     {
-                        List<Models.VehicleInfo> vehicleInfoList = WcfVehicleService.ListAllVehicle();
+                        List<VehicleInfo> vehicleInfoList = WcfVehicleService.ListAllInfo();
 
                         vehicleInfoList.ForEach(list =>
                         {
-                            Console.WriteLine(string.Format("{0} {1} {2} {3} {4} {5}"), list.BrandName, list.Nationality, list.Type, list.EngineDisplacement, list.Turbo);
+                            string s = list.BrandName + "," + list.Nationality + "," + list.Type + "," + list.EngineDisplacement + "," + list.Turbo;
+                            Console.WriteLine(s);
                         });
 
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e);
-                        Console.WriteLine();
                     }
                 }
             }
