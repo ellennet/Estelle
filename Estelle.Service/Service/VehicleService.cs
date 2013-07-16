@@ -25,12 +25,12 @@ namespace Estelle.Service
             VehicleBrand.DateCreated = DateTime.Now;
             VehicleBrandDao.Save(VehicleBrand);
 
-            Domain.Vehicles.VehicleType VehicleType = new Domain.Vehicles.VehicleType();
-            VehicleType.BrandID = VehicleBrand.BrandID;
+            Domain.Vehicles.VehicleType VehicleType = new Domain.Vehicles.VehicleType();            
+            VehicleType.CurrentVehicleBrand = VehicleBrand;
             VehicleType.EngineDisplacement = 1;
             VehicleType.Turbo = false;
-            VehicleType.Type = "abc";            
-            VehicleTypeDao.Save(VehicleType);        
+            VehicleType.Type = "abc";
+            VehicleTypeDao.Save(VehicleType);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Estelle.Service
             {
                 Domain.Vehicles.VehicleType VehicleType = new Domain.Vehicles.VehicleType();
 
-                VehicleType.BrandID = VehicleBrandID;
+                //VehicleType.BrandID = VehicleBrandID; // 这里需要代入父级实体
                 VehicleType.Type = VehicleTypeModel.Type;
                 VehicleType.EngineDisplacement = VehicleTypeModel.EngineDisplacement;
                 VehicleType.Turbo = VehicleTypeModel.Turbo;
@@ -134,7 +134,7 @@ namespace Estelle.Service
         /// <returns>集合</returns>
         [LoggingAttributes]
         public List<Models.VehicleInfo> ListAllInfo()
-        {                 
+        {
             List<Domain.Vehicles.VehicleType> VehicleTypeList = VehicleTypeDao.LoadAll().ToList();
             List<Models.VehicleInfo> VehicleList = new List<Models.VehicleInfo>();
 

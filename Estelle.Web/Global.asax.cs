@@ -24,6 +24,9 @@ namespace Estelle.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            var config = GlobalConfiguration.Configuration;
+            config.Formatters.Insert(0, new JsonpMediaTypeFormatter());  
         }
     }
 }

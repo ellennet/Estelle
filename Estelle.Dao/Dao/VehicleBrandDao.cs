@@ -24,7 +24,7 @@ namespace Estelle.Dao
             
             IList<Domain.Vehicles.VehicleBrand> VehicleBrandList = base.Session.QueryOver<Domain.Vehicles.VehicleBrand>().Where(w => w.BrandName == BrandName).List().ToList();            
             Guid ret = (VehicleBrandList.Count == 1) ? VehicleBrandList[0].BrandID : Guid.Empty;
-            return ret;               
+            return ret;
         }
     }
 }
