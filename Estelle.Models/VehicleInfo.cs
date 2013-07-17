@@ -8,7 +8,6 @@ namespace Estelle.Models
     /// <summary>
     /// 型号列表
     /// </summary>
-    [Serializable]
     public class VehicleInfo
     {
         /// <summary>

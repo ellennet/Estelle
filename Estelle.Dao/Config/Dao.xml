@@ -28,7 +28,7 @@
     
   <!--Hibernate模板-->
   <object id="HibernateTemplate" type="Spring.Data.NHibernate.Generic.HibernateTemplate">
-    <property name="SessionFactory" ref="NHibernateSessionFactory" />
+    <property name="SessionFactory" ref="NHibernateSessionFactory" />    
     <property name="TemplateFlushMode" value="Auto" />
     <property name="CacheQueries" value="true" />    
   </object>
@@ -43,7 +43,7 @@
   <object id="VehicleBrandDao" type="Estelle.Dao.VehicleBrandDao, Estelle.Dao">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>    
   </object>
-
+  
   <object id="VehicleTypeDao" type="Estelle.Dao.VehicleTypeDao, Estelle.Dao">
     <property name="HibernateTemplate" ref="HibernateTemplate"/>    
   </object>  

@@ -86,7 +86,7 @@ namespace Estelle.Dao
         /// <returns>实体</returns>
         [Transaction(ReadOnly = true)]
         public virtual T Get(object id)
-        {                        
+        {                                    
             return this.HibernateTemplate.Get<T>(id);
         }
 
@@ -107,7 +107,7 @@ namespace Estelle.Dao
         /// <returns>集合</returns>
         [Transaction(ReadOnly = true)]
         public virtual IList<T> LoadAll()
-        {
+        {             
             return this.HibernateTemplate.LoadAll<T>();
         }
 

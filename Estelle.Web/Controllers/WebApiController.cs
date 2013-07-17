@@ -14,9 +14,9 @@ namespace Estelle.Web.Controllers
 
         [HttpGet]
         [Queryable]
-        public IQueryable<Estelle.Models.VehicleInfo> Get()
+        public IQueryable<Estelle.Models.VehicleBrand> Get()
         {
-            return AopVehicleService.ListAllInfo().AsQueryable();
+            return AopVehicleService.ListAllBrand().AsQueryable();
         }
     }
 

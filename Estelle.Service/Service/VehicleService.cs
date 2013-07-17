@@ -19,18 +19,18 @@ namespace Estelle.Service
         [Transaction]
         public void test()
         {
-            Domain.Vehicles.VehicleBrand VehicleBrand = new Domain.Vehicles.VehicleBrand();
-            VehicleBrand.BrandName = "abc";
-            VehicleBrand.Nationality = "nn";
-            VehicleBrand.DateCreated = DateTime.Now;
-            VehicleBrandDao.Save(VehicleBrand);
+            //Domain.Vehicles.VehicleBrand VehicleBrand = new Domain.Vehicles.VehicleBrand();
+            //VehicleBrand.BrandName = "abc";
+            //VehicleBrand.Nationality = "nn";
+            //VehicleBrand.DateCreated = DateTime.Now;
+            //VehicleBrandDao.Save(VehicleBrand);
 
-            Domain.Vehicles.VehicleType VehicleType = new Domain.Vehicles.VehicleType();            
-            VehicleType.CurrentVehicleBrand = VehicleBrand;
-            VehicleType.EngineDisplacement = 1;
-            VehicleType.Turbo = false;
-            VehicleType.Type = "abc";
-            VehicleTypeDao.Save(VehicleType);
+            //Domain.Vehicles.VehicleType VehicleType = new Domain.Vehicles.VehicleType();            
+            //VehicleType.CurrentVehicleBrand = VehicleBrand;
+            //VehicleType.EngineDisplacement = 1;
+            //VehicleType.Turbo = false;
+            //VehicleType.Type = "abc";
+            //VehicleTypeDao.Save(VehicleType);
         }
 
         /// <summary>
@@ -120,10 +120,10 @@ namespace Estelle.Service
         /// <returns></returns>
         [LoggingAttributes]
         public List<Models.VehicleBrand> ListAllBrand()
-        {
+        {            
             List<Domain.Vehicles.VehicleBrand> VehicleBrandDomainList = VehicleBrandDao.LoadAll().ToList();
             Common.SimpleObjectMapper<Domain.Vehicles.VehicleBrand, Models.VehicleBrand> SimpleObjectMapper = new Common.SimpleObjectMapper<Domain.Vehicles.VehicleBrand, Models.VehicleBrand>();
-            List<Models.VehicleBrand> VehicleBrandList=SimpleObjectMapper.ListMap(VehicleBrandDomainList);
+            List<Models.VehicleBrand> VehicleBrandList = SimpleObjectMapper.ListMap(VehicleBrandDomainList);
 
             return VehicleBrandList;
         }

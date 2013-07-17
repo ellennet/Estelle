@@ -22,7 +22,7 @@ namespace Estelle.Dao
             //IList<Domain.Vehicles.VehicleType> abc = base.Session.QueryOver<Domain.Vehicles.VehicleType>()
             //    .JoinQueryOver<Domain.Vehicles.VehicleBrand>(c => c.CurrentVehicleBrand).List();
             
-            IList<Domain.Vehicles.VehicleBrand> VehicleBrandList = base.Session.QueryOver<Domain.Vehicles.VehicleBrand>().Where(w => w.BrandName == BrandName).List().ToList();            
+            IList<Domain.Vehicles.VehicleBrand> VehicleBrandList = SessionFactory.GetCurrentSession().QueryOver<Domain.Vehicles.VehicleBrand>().Where(w => w.BrandName == BrandName).List().ToList();            
             Guid ret = (VehicleBrandList.Count == 1) ? VehicleBrandList[0].BrandID : Guid.Empty;
             return ret;
         }

@@ -8,7 +8,6 @@ namespace Estelle.Models
     /// <summary>
     /// 品牌信息
     /// </summary>
-    [Serializable]
     public class VehicleBrand
     {
         /// <summary>
