@@ -16,23 +16,6 @@ namespace Estelle.Service
         //被注入的Service
         public IService.ICommonService CommonService { get; set; }
 
-        [Transaction]
-        public void test()
-        {
-            //Domain.Vehicles.VehicleBrand VehicleBrand = new Domain.Vehicles.VehicleBrand();
-            //VehicleBrand.BrandName = "abc";
-            //VehicleBrand.Nationality = "nn";
-            //VehicleBrand.DateCreated = DateTime.Now;
-            //VehicleBrandDao.Save(VehicleBrand);
-
-            //Domain.Vehicles.VehicleType VehicleType = new Domain.Vehicles.VehicleType();            
-            //VehicleType.CurrentVehicleBrand = VehicleBrand;
-            //VehicleType.EngineDisplacement = 1;
-            //VehicleType.Turbo = false;
-            //VehicleType.Type = "abc";
-            //VehicleTypeDao.Save(VehicleType);
-        }
-
         /// <summary>
         /// 新增一个品牌
         /// </summary>
@@ -134,7 +117,7 @@ namespace Estelle.Service
         /// <returns>集合</returns>
         [LoggingAttributes]
         public List<Models.VehicleInfo> ListAllInfo()
-        {
+        {                                                 
             List<Domain.Vehicles.VehicleType> VehicleTypeList = VehicleTypeDao.LoadAll().ToList();
             List<Models.VehicleInfo> VehicleList = new List<Models.VehicleInfo>();
 

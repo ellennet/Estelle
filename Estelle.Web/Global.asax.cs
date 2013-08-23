@@ -26,7 +26,9 @@ namespace Estelle.Web
             AuthConfig.RegisterAuth();
 
             var config = GlobalConfiguration.Configuration;
-            config.Formatters.Insert(0, new JsonpMediaTypeFormatter());  
+            config.Formatters.Insert(0, new JsonpMediaTypeFormatter());
+
+            HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
         }
     }
 }

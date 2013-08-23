@@ -15,9 +15,6 @@ namespace Estelle.Web.Controllers
         {
             ViewBag.Message = "所有型号信息";
 
-            VehicleService.test();
-
-
             return View();
         }
 
@@ -36,6 +33,8 @@ namespace Estelle.Web.Controllers
         }
 
         [HttpGet]
+        //[CustomAuthAttribute(Roles = "Admin")]
+        //[CustomAuthAttribute( Users="zhb")]
         public ActionResult ListAllVehicle(string type)
         {
             List<Estelle.Models.VehicleInfo> VehicleInfoList = new List<Estelle.Models.VehicleInfo>();

@@ -9,7 +9,7 @@ namespace Estelle.SpringNetHelper
     {
         public LoggingAttributes()
         {
-
+            //log4net
         }
     }
 }
