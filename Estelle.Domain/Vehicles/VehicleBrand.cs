@@ -19,7 +19,7 @@ namespace Estelle.Domain.Vehicles
         /// <summary>
         /// 版本号
         /// </summary>
-        [PropertyAttribute(Column = "Version ", TypeType = typeof(Int32))]
+        [PropertyAttribute(Column = "Version ", TypeType = typeof(Version))]
         public virtual int Version { get; set; }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Estelle.Domain.Vehicles
         /// </summary>
         [Bag(0, Name = "VehicleTypeList", Inverse = true, Lazy = CollectionLazy.False)]
         [Key(1, Column = "BrandID")]
-        [OneToMany(1, ClassType = typeof(VehicleType))]
+        [OneToMany(2, ClassType = typeof(VehicleType))]
         public virtual IList<VehicleType> VehicleTypeList { get; set; }
     }
 }

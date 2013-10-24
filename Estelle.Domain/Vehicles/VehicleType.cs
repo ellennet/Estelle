@@ -19,7 +19,7 @@ namespace Estelle.Domain.Vehicles
         /// <summary>
         /// 版本号
         /// </summary>
-        [PropertyAttribute(Column = "Version ", TypeType = typeof(Int32))]
+        [PropertyAttribute(Column = "Version ", TypeType = typeof(Version))]
         public virtual int Version { get; set; }
 
         /// <summary>

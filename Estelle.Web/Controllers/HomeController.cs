@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Trirand.Web.Mvc;
 
 namespace Estelle.Web.Controllers
 {
@@ -22,6 +23,7 @@ namespace Estelle.Web.Controllers
         {
             ViewBag.Message = "Your app description page.";
 
+
             return View();
         }
 
@@ -35,7 +37,7 @@ namespace Estelle.Web.Controllers
         [HttpGet]
         //[CustomAuthAttribute(Roles = "Admin")]
         //[CustomAuthAttribute( Users="zhb")]
-        public ActionResult ListAllVehicle(string type)
+        public JsonResult ListAllVehicle(string type)
         {
             List<Estelle.Models.VehicleInfo> VehicleInfoList = new List<Estelle.Models.VehicleInfo>();
 
@@ -48,7 +50,7 @@ namespace Estelle.Web.Controllers
                 VehicleInfoList = AopVehicleService.ListAllTypeWithGermanyGT18();
             }
                         
-            return Json(VehicleInfoList, JsonRequestBehavior.AllowGet);            
+            return Json(VehicleInfoList, JsonRequestBehavior.AllowGet);
         }
 
     }
