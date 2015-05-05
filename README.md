@@ -1,6 +1,3 @@
 Estelle
 =======
-
-EstelleFrameWork
-
-With Spring.Net & NHibernate
+EstelleFrameWork With Spring.Net & NHibernate
